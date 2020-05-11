@@ -87,11 +87,11 @@ export default function updateBacklinks(
 
   let beforeBacklinks = noteContents.slice(0, insertionOffset);
   if (beforeBacklinks.split(/\r?\n/).pop() !== '' && backlinksString !== '') {
-    beforeBacklinks += '\n\n\n\n'
+    beforeBacklinks += '\n\n\n'
   }
   let afterBacklinks = noteContents.slice(oldEndOffset);
-  if (afterBacklinks.split(/\r?\n/).length === 1 && !afterBacklinks.includes('## ...') && backlinksString !== '') {
-    afterBacklinks = '## ...'
+  if (afterBacklinks.split(/\r?\n/).length === 2 && !afterBacklinks.includes('[//]: # (Backlinks end here)') && backlinksString !== '') {
+    afterBacklinks += '\n[//]: # (Backlinks end here)\n'
   }
   const newNoteContents =
     beforeBacklinks +
